@@ -36,7 +36,6 @@
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--fly-bg);color:var(--fly-text);-webkit-font-smoothing:antialiased}
   .app{display:flex;min-height:100vh}
-  /* sidebar */
   .sidebar{width:236px;flex-shrink:0;background:#111827;border-right:1px solid #1f2937;padding:18px 14px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
   .brand{display:flex;align-items:center;gap:9px;padding:6px 8px 16px;color:#fff;font-weight:700;font-size:15px;letter-spacing:.02em}
   .brand .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#d6a84f,#8a641f);display:flex;align-items:center;justify-content:center;color:#111;font-weight:800;font-size:13px}
@@ -45,7 +44,6 @@
   .nav-item svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
   .nav-item.active{background:rgba(255,255,255,.06);color:#fff}
   .nav-item.active svg{color:#d6a84f}
-  /* main */
   .main{flex:1;min-width:0;display:flex;flex-direction:column}
   header.top{position:sticky;top:0;z-index:5;background:var(--fly-bg);border-bottom:1px solid transparent;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:20px 24px 16px;flex-wrap:wrap}
   .title-wrap{display:flex;align-items:center;gap:12px;min-width:0}
@@ -59,7 +57,6 @@
   .theme-btn{border:1px solid var(--fly-border-strong);background:var(--fly-surface);color:var(--fly-text);border-radius:9px;width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center}
   .theme-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
   .body{padding:8px 24px 48px;display:flex;flex-direction:column;gap:18px}
-  /* stat grid */
   .stat-grid{display:grid;gap:12px;grid-template-columns:repeat(4,1fr)}
   .stat{border:1px solid var(--fly-border);background:var(--fly-surface);border-radius:8px;padding:16px;box-shadow:var(--fly-panel-shadow)}
   .stat .lbl{display:flex;align-items:center;gap:8px;font-size:11px;text-transform:uppercase;font-weight:500;color:var(--fly-text-muted)}
@@ -69,7 +66,6 @@
   .dot-gold{background:var(--fly-chart-revenue)} .dot-blue{background:var(--fly-chart-investment)}
   .dot-green{background:var(--fly-success)} .dot-red{background:var(--fly-danger)}
   .dot-orange{background:var(--fly-warning-strong)} .dot-neutral{background:var(--fly-text-muted)}
-  /* panel */
   .panel{border:1px solid var(--fly-border);background:var(--fly-surface);border-radius:8px;box-shadow:var(--fly-panel-shadow);overflow:hidden}
   .panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:1px solid var(--fly-divider);padding:14px 20px}
   .panel-head .ph-left{display:flex;gap:12px;min-width:0}
@@ -79,7 +75,7 @@
   .panel-body{padding:16px}
   .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid transparent;border-radius:7px;padding:5px 9px;font-size:11px;font-weight:600}
   .pill-orange{color:var(--fly-warning-strong)} .pill-red{color:var(--fly-danger-strong)} .pill-green{color:var(--fly-success-text)}
-  /* datalist */
+  .badge-sim{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--fly-brand-line);background:var(--fly-brand-soft);color:var(--fly-brand-strong);border-radius:7px;padding:4px 9px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
   .dl{display:flex;flex-direction:column;gap:10px}
   .dl-row{border:1px solid var(--fly-border-subtle);background:var(--fly-row-bg);border-radius:8px;padding:11px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
   .dl-row .l{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--fly-text-soft)}
@@ -87,7 +83,6 @@
   .dl-row .r{text-align:right;flex-shrink:0}
   .dl-row .r .v{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--fly-text)}
   .dl-row .r .k{margin-top:2px;font-size:10px;text-transform:uppercase;font-weight:600;color:var(--fly-text-dim)}
-  /* dre */
   .dre-row{border-radius:6px;padding:8px 12px}
   .dre-row.total{border-top:1px solid var(--fly-divider);background:var(--fly-row-bg)}
   .dre-line{display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -97,7 +92,6 @@
   .dre-line .vl.ded{color:var(--fly-danger-strong)} .dre-line .vl.tot{font-weight:600;color:var(--fly-text)} .dre-line .vl.base{font-weight:500;color:var(--fly-text)}
   .meter{margin-top:6px;height:1px;border-radius:2px;background:var(--fly-divider);overflow:hidden}
   .meter span{display:block;height:100%;border-radius:2px}
-  /* table */
   .tbl-wrap{overflow-x:auto}
   table{width:100%;border-collapse:collapse;font-size:14px}
   thead tr{border-bottom:1px solid var(--fly-divider);background:var(--fly-table-head)}
@@ -107,18 +101,37 @@
   tbody tr:first-child td{border-top:0}
   td.name{font-weight:500;color:var(--fly-text)}
   .grid-2{display:grid;gap:16px;grid-template-columns:1.6fr .9fr}
-  /* resumo estoque */
   .resumo{display:grid;gap:10px;grid-template-columns:repeat(4,1fr);margin-bottom:16px}
   .resumo .ri{border:1px solid var(--fly-border-subtle);background:var(--fly-row-bg);border-radius:8px;padding:10px 12px}
   .resumo .ri .k{font-size:10px;text-transform:uppercase;font-weight:600;color:var(--fly-text-dim)}
   .resumo .ri .v{margin-top:4px;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--fly-text)}
-  .banner{background:var(--fly-brand-soft);border:1px solid var(--fly-brand-line);color:var(--fly-brand-strong);font-size:12px;padding:8px 14px;border-radius:8px;margin:0 24px;margin-top:12px}
-  /* chart */
+  .banner{background:var(--fly-brand-soft);border:1px solid var(--fly-brand-line);color:var(--fly-brand-strong);font-size:12px;padding:8px 14px;border-radius:8px;margin:12px 24px 0}
   .chart{position:relative;width:100%;height:340px}
   .legend{display:flex;gap:16px;margin-bottom:10px;font-size:12px;color:var(--fly-text-muted)}
   .legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+  /* inputs de simulacao */
+  .sim-input{width:110px;max-width:100%;border:1px solid var(--fly-brand-line);background:var(--fly-surface);color:var(--fly-text);border-radius:6px;padding:5px 8px;font:inherit;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+  .sim-input:focus{outline:2px solid var(--fly-brand-line);outline-offset:1px}
+  .sim-note{margin-top:12px;font-size:12px;color:var(--fly-text-muted);display:flex;align-items:center;gap:6px}
+  .sim-note b{color:var(--fly-brand-strong)}
+  .sim-controls{display:grid;gap:14px;grid-template-columns:repeat(3,1fr);margin-bottom:8px}
+  .sim-field label{display:block;font-size:11px;text-transform:uppercase;font-weight:600;color:var(--fly-text-dim);margin-bottom:5px}
+  .sim-field .inp{display:flex;align-items:center;gap:6px;border:1px solid var(--fly-brand-line);background:var(--fly-surface);border-radius:8px;padding:8px 11px}
+  .sim-field .inp input{border:0;background:transparent;color:var(--fly-text);font:inherit;font-size:16px;font-weight:600;width:100%;font-variant-numeric:tabular-nums;outline:none}
+  .sim-field .inp .u{color:var(--fly-text-muted);font-size:13px;font-weight:500}
+  .sim-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 18px}
+  .sim-chip{border:1px solid var(--fly-border);background:transparent;color:var(--fly-text-muted);border-radius:7px;padding:5px 11px;font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+  .sim-chip.active{background:var(--fly-brand-soft);color:var(--fly-brand-strong);border-color:var(--fly-brand-line)}
+  .sim-out{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+  .sim-block{border:1px solid var(--fly-border-subtle);background:var(--fly-row-bg);border-radius:8px;padding:14px 16px}
+  .sim-block h3{font-size:11px;text-transform:uppercase;color:var(--fly-text-dim);font-weight:600;margin-bottom:8px;letter-spacing:.03em}
+  .sim-line{display:flex;justify-content:space-between;gap:10px;padding:6px 0;font-size:13px}
+  .sim-line .lb{color:var(--fly-text-soft)} .sim-line .vl{font-variant-numeric:tabular-nums;font-weight:600;color:var(--fly-text)}
+  .sim-line .vl.neg{color:var(--fly-danger-strong)}
+  .sim-line.hl{border-top:1px solid var(--fly-divider);margin-top:6px;padding-top:11px}
+  .sim-line.hl .lb{font-weight:700;color:var(--fly-text)} .sim-line.hl .vl{color:var(--fly-brand-strong);font-size:15px}
   @media(max-width:1000px){.stat-grid{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}.resumo{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:760px){.sidebar{display:none}.stat-grid{grid-template-columns:repeat(2,1fr)}h1{font-size:20px}.body,header.top{padding-left:16px;padding-right:16px}.banner{margin-left:16px;margin-right:16px}}
+  @media(max-width:760px){.sidebar{display:none}.stat-grid{grid-template-columns:repeat(2,1fr)}h1{font-size:20px}.body,header.top{padding-left:16px;padding-right:16px}.banner{margin-left:16px;margin-right:16px}.sim-controls{grid-template-columns:1fr}.sim-out{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -164,10 +177,9 @@
       </div>
     </header>
 
-    <div class="banner">Preview visual (dados mockados e anonimizados). O filtro de período é ilustrativo — a re-filtragem real virá com o backend.</div>
+    <div class="banner">Preview visual (dados mockados e anonimizados). As tabelas <b>Preço por variação</b> e <b>Simulador de comissão</b> são interativas — edite os campos destacados. O filtro de período é ilustrativo.</div>
 
     <div class="body">
-      <!-- KPIs -->
       <div class="stat-grid">
         <div class="stat"><div class="lbl"><span class="dot dot-gold"></span>Receita bruta</div><div class="val">R$ 15.513,19</div><div class="det">05 jul – 21 ago · após descontos e reembolsos</div></div>
         <div class="stat"><div class="lbl"><span class="dot dot-green"></span>Margem</div><div class="val">31%</div><div class="det">Margem de contribuição sobre a receita bruta</div></div>
@@ -179,7 +191,6 @@
         <div class="stat"><div class="lbl"><span class="dot dot-red"></span>Em estoque</div><div class="val">235</div><div class="det">Frascos disponíveis (FIFO por lote)</div></div>
       </div>
 
-      <!-- Caixa -->
       <div class="panel">
         <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Caixa e volumes</h2><p class="pd">Métricas de apoio do período — separadas do faturamento</p></div></div></div>
         <div class="panel-body"><div class="dl">
@@ -191,16 +202,14 @@
         </div></div>
       </div>
 
-      <!-- Evolução -->
       <div class="panel">
         <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Evolução no período</h2><p class="pd">Receita bruta e investimento em mídia por dia</p></div></div></div>
         <div class="panel-body">
           <div class="legend"><span><i style="background:var(--fly-chart-revenue)"></i>Receita bruta</span><span><i style="background:var(--fly-chart-investment)"></i>Mídia</span></div>
-          <div class="chart"><svg id="chart" width="100%" height="100%" preserveAspectRatio="none"></svg><div id="tip" style="position:absolute;display:none;pointer-events:none;background:var(--fly-surface-elevated);border:1px solid var(--fly-border);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:var(--fly-panel-shadow)"></div></div>
+          <div class="chart"><svg id="chart" width="100%" height="100%" preserveAspectRatio="none"></svg></div>
         </div>
       </div>
 
-      <!-- DRE + Canais -->
       <div class="grid-2">
         <div class="panel">
           <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Para onde foi o dinheiro</h2><p class="pd">Do preço de tabela ao resultado, no período</p></div></div></div>
@@ -218,20 +227,18 @@
         </div>
       </div>
 
-      <!-- Variações -->
+      <!-- Variações (SIMULADOR) -->
       <div class="panel">
-        <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Preço e margem por variação</h2><p class="pd">Composição de custo e sobra por pedido em cada oferta</p></div></div></div>
-        <div class="panel-body"><div class="tbl-wrap"><table>
-          <thead><tr><th>Variação</th><th class="r">Preço</th><th class="r">Taxas TikTok</th><th class="r">Impostos</th><th class="r">Custo</th><th class="r">Envio</th><th class="r">Sobra/pedido</th><th class="r">Margem</th><th class="r">ROI mín.</th></tr></thead>
-          <tbody>
-            <tr><td class="name">1 Frasco</td><td class="r" style="font-weight:600;color:var(--fly-text)">R$ 75,00</td><td class="r" style="color:var(--fly-text-muted)">-R$ 18,84</td><td class="r" style="color:var(--fly-text-muted)">-R$ 5,20</td><td class="r" style="color:var(--fly-text-muted)">-R$ 17,38</td><td class="r" style="color:var(--fly-text-muted)">-R$ 5,00</td><td class="r" style="font-weight:600;color:var(--fly-brand-strong)">R$ 28,59</td><td class="r" style="color:var(--fly-success)">38%</td><td class="r">2,62×</td></tr>
-            <tr><td class="name">2 Frascos</td><td class="r" style="font-weight:600;color:var(--fly-text)">R$ 99,66</td><td class="r" style="color:var(--fly-text-muted)">-R$ 23,08</td><td class="r" style="color:var(--fly-text-muted)">-R$ 6,91</td><td class="r" style="color:var(--fly-text-muted)">-R$ 34,76</td><td class="r" style="color:var(--fly-text-muted)">-R$ 5,00</td><td class="r" style="font-weight:600;color:var(--fly-brand-strong)">R$ 29,92</td><td class="r" style="color:var(--fly-success)">30%</td><td class="r">3,33×</td></tr>
-            <tr><td class="name">4 Frascos</td><td class="r" style="font-weight:600;color:var(--fly-text)">R$ 178,96</td><td class="r" style="color:var(--fly-text-muted)">-R$ 36,72</td><td class="r" style="color:var(--fly-text-muted)">-R$ 12,40</td><td class="r" style="color:var(--fly-text-muted)">-R$ 69,51</td><td class="r" style="color:var(--fly-text-muted)">-R$ 5,00</td><td class="r" style="font-weight:600;color:var(--fly-brand-strong)">R$ 55,33</td><td class="r" style="color:var(--fly-success)">31%</td><td class="r">3,23×</td></tr>
-          </tbody>
-        </table></div></div>
+        <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Preço e margem por variação</h2><p class="pd">Simule: edite o preço e veja margem, sobra e ROI recalcularem</p></div></div><span class="badge-sim">Simulador</span></div>
+        <div class="panel-body">
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Variação</th><th class="r">Preço</th><th class="r">Taxas TikTok</th><th class="r">Impostos</th><th class="r">Custo</th><th class="r">Envio</th><th class="r">Sobra/pedido</th><th class="r">Margem</th><th class="r">ROI mín.</th></tr></thead>
+            <tbody id="variacoes"></tbody>
+          </table></div>
+          <p class="sim-note">Premissas: taxa TikTok <b>17,2% + R$ 5,94</b>/pedido · imposto <b>6,93%</b> · custo do frasco <b>R$ 17,38</b> · envio <b>R$ 5,00</b>. Edite o <b>preço</b> de cada linha.</p>
+        </div>
       </div>
 
-      <!-- Creators -->
       <div class="panel">
         <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Ranking de creators</h2><p class="pd">6 creators com venda no período</p></div></div></div>
         <div class="panel-body"><div class="tbl-wrap"><table>
@@ -247,7 +254,39 @@
         </table></div></div>
       </div>
 
-      <!-- Estoque FIFO -->
+      <!-- Simulador de comissão de creator -->
+      <div class="panel">
+        <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Simulador de comissão de creator</h2><p class="pd">Defina a comissão e veja quanto sobra pra você e quanto a creator leva</p></div></div><span class="badge-sim">Simulador</span></div>
+        <div class="panel-body">
+          <div class="sim-controls">
+            <div class="sim-field"><label>Comissão da creator</label><div class="inp"><input id="crCom" type="number" step="1" min="0" max="90" value="6"><span class="u">%</span></div></div>
+            <div class="sim-field"><label>Faturamento no mês</label><div class="inp"><span class="u">R$</span><input id="crFat" type="number" step="100" min="0" value="10000"></div></div>
+            <div class="sim-field"><label>Fixo mensal da creator</label><div class="inp"><span class="u">R$</span><input id="crFixo" type="number" step="50" min="0" value="300"></div></div>
+          </div>
+          <div class="sim-chips" id="crChips"></div>
+          <div class="sim-out">
+            <div class="sim-block">
+              <h3>Por pedido (ticket R$ 83,86)</h3>
+              <div class="sim-line"><span class="lb">Preço que o cliente paga</span><span class="vl" id="o_preco">R$ 83,86</span></div>
+              <div class="sim-line"><span class="lb">(−) Taxas do TikTok + imposto</span><span class="vl neg" id="o_taxas">—</span></div>
+              <div class="sim-line"><span class="lb">(−) Custo do frasco + envio</span><span class="vl neg" id="o_custo">—</span></div>
+              <div class="sim-line"><span class="lb">(−) Comissão da creator</span><span class="vl neg" id="o_com">—</span></div>
+              <div class="sim-line hl"><span class="lb">= Sobra pra você</span><span class="vl" id="o_sobra">—</span></div>
+              <div class="sim-line"><span class="lb">Margem</span><span class="vl" id="o_margem">—</span></div>
+            </div>
+            <div class="sim-block">
+              <h3>No mês</h3>
+              <div class="sim-line"><span class="lb">Pedidos estimados</span><span class="vl" id="o_pedidos">—</span></div>
+              <div class="sim-line"><span class="lb">A creator leva (comissão)</span><span class="vl" id="o_elames">—</span></div>
+              <div class="sim-line"><span class="lb">(+) Fixo mensal</span><span class="vl" id="o_fixo">—</span></div>
+              <div class="sim-line"><span class="lb">A creator leva no total</span><span class="vl" id="o_elatotal">—</span></div>
+              <div class="sim-line hl"><span class="lb">= Você fica no mês</span><span class="vl" id="o_voce">—</span></div>
+            </div>
+          </div>
+          <p class="sim-note">Premissas por pedido: comissão da plataforma <b>5,96%</b> · SFP <b>5,96%</b> · taxa por item <b>R$ 5,94</b> · imposto <b>6,93%</b> · custo <b>R$ 17,38</b>×<b>1,43</b> frascos · envio <b>R$ 5,00</b>.</p>
+        </div>
+      </div>
+
       <div class="panel">
         <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Estoque por lote (FIFO)</h2><p class="pd">Consumo em ordem de chegada e alertas de cobertura</p></div></div><span class="pill pill-orange">Cobertura baixa</span></div>
         <div class="panel-body">
@@ -273,66 +312,100 @@
 </div>
 
 <script>
-function toggleTheme(){
-  var h=document.documentElement;
-  h.dataset.theme = h.dataset.theme==='dark' ? 'light' : 'dark';
-  drawChart();
-}
-// DRE
+function brl(v){return (v<0?"-":"")+"R$ "+Math.abs(v).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});}
+function pct(v){return (v*100).toLocaleString("pt-BR",{maximumFractionDigits:1})+"%";}
+function toggleTheme(){var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';drawChart();}
+
+/* ---------- DRE ---------- */
 var DRE_BASE=33792;
-var dre=[
-  ["Preço de tabela",33792,"base"],["(−) Desconto concedido",-18278.81,"deducao"],["(−) Reembolsos",0,"deducao"],
+var dre=[["Preço de tabela",33792,"base"],["(−) Desconto concedido",-18278.81,"deducao"],["(−) Reembolsos",0,"deducao"],
   ["= Receita bruta",15513.19,"total"],["(−) Comissão da plataforma",-924.31,"deducao"],["(−) Taxa de serviço do SFP",-924.31,"deducao"],
   ["(−) Taxa por item vendido",-1110,"deducao"],["(−) Comissão de creators",-805.96,"deducao"],["(−) Taxas ainda estimadas",-25.36,"deducao"],
   ["(−) Frete líquido",0,"deducao"],["= Receita",11723.25,"total"],["(−) Custo do produto",-4809.75,"deducao"],
   ["(−) Impostos",-1075.06,"deducao"],["(−) Material de envio",-1010,"deducao"],["= Margem de contribuição",4828.43,"total"],
-  ["(−) Mídia",-3874.73,"deducao"],["= Resultado",953.70,"total"]
-];
-function brl(v){return (v<0?"-":"")+"R$ "+Math.abs(v).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});}
-(function(){
-  var html="";
-  dre.forEach(function(it){
-    var lbl=it[0],val=it[1],tipo=it[2];
-    var prop=Math.min(Math.abs(val)/DRE_BASE,1);
-    var barColor= tipo==="total"?"var(--fly-brand-strong)": tipo==="deducao"?"var(--fly-danger)":"var(--fly-text-muted)";
-    var vlClass= tipo==="deducao"?"ded":tipo==="total"?"tot":"base";
-    html+='<div class="dre-row '+(tipo==="total"?"total":"")+'"><div class="dre-line"><span class="lb">'+lbl+'</span><span class="vl '+vlClass+'">'+brl(val)+'</span></div>'+
-      (prop>0?'<div class="meter"><span style="width:'+Math.max(prop*100,2)+'%;background:'+barColor+'"></span></div>':'')+'</div>';
-  });
-  document.getElementById("dre").innerHTML=html;
-})();
-// Chart
-var serie=[
-  {d:"17/08",rev:2028.50,mid:449.01},{d:"18/08",rev:866.36,mid:188.78},{d:"19/08",rev:1875.44,mid:418},
-  {d:"20/08",rev:1347.56,mid:268.33},{d:"21/08",rev:112.96,mid:0},{d:"22/08",rev:0,mid:0},{d:"23/08",rev:0,mid:0}
-];
-function drawChart(){
-  var svg=document.getElementById("chart"); if(!svg) return;
-  var W=svg.clientWidth||700,H=svg.clientHeight||340,pl=56,pr=16,pt=14,pb=28;
-  var cs=getComputedStyle(document.documentElement);
-  var cRev=cs.getPropertyValue("--fly-chart-revenue").trim(),cMid=cs.getPropertyValue("--fly-chart-investment").trim();
-  var cGrid=cs.getPropertyValue("--fly-chart-grid").trim(),cAxis=cs.getPropertyValue("--fly-chart-axis").trim();
-  var max=2200, n=serie.length;
-  function x(i){return pl+(W-pl-pr)*(n===1?0:i/(n-1));}
-  function y(v){return pt+(H-pt-pb)*(1-v/max);}
-  var s='';
-  // grid + y labels
-  for(var g=0;g<=4;g++){var gv=max*g/4;var gy=y(gv);
-    s+='<line x1="'+pl+'" y1="'+gy+'" x2="'+(W-pr)+'" y2="'+gy+'" stroke="'+cGrid+'" stroke-dasharray="3 3"/>';
-    s+='<text x="'+(pl-8)+'" y="'+(gy+4)+'" text-anchor="end" font-size="11" fill="'+cAxis+'">'+(gv>=1000?"R$ "+(gv/1000)+"k":"R$ "+gv)+'</text>';
-  }
-  // x labels
+  ["(−) Mídia",-3874.73,"deducao"],["= Resultado",953.70,"total"]];
+(function(){var html="";dre.forEach(function(it){var lbl=it[0],val=it[1],tipo=it[2];var prop=Math.min(Math.abs(val)/DRE_BASE,1);
+  var barColor=tipo==="total"?"var(--fly-brand-strong)":tipo==="deducao"?"var(--fly-danger)":"var(--fly-text-muted)";
+  var vlClass=tipo==="deducao"?"ded":tipo==="total"?"tot":"base";
+  html+='<div class="dre-row '+(tipo==="total"?"total":"")+'"><div class="dre-line"><span class="lb">'+lbl+'</span><span class="vl '+vlClass+'">'+brl(val)+'</span></div>'+
+    (prop>0?'<div class="meter"><span style="width:'+Math.max(prop*100,2)+'%;background:'+barColor+'"></span></div>':'')+'</div>';});
+  document.getElementById("dre").innerHTML=html;})();
+
+/* ---------- Simulador: Preço por variação ---------- */
+var VAR={taxaVar:0.172,taxaFixa:5.94,imposto:0.0693,custoFrasco:17.38,envio:5};
+var variacoes=[{nome:"1 Frasco",frascos:1,preco:75.00},{nome:"2 Frascos",frascos:2,preco:99.66},{nome:"4 Frascos",frascos:4,preco:178.96}];
+function calcVar(v){var taxas=v.preco*VAR.taxaVar+VAR.taxaFixa,imp=v.preco*VAR.imposto,custo=VAR.custoFrasco*v.frascos,envio=VAR.envio;
+  var sobra=v.preco-taxas-imp-custo-envio;return{taxas:taxas,imp:imp,custo:custo,envio:envio,sobra:sobra,margem:v.preco>0?sobra/v.preco:0,roi:sobra>0?v.preco/sobra:0};}
+function renderVariacoes(){var tb=document.getElementById("variacoes");var h="";
+  variacoes.forEach(function(v,i){var c=calcVar(v);
+    h+='<tr><td class="name">'+v.nome+'</td>'+
+      '<td class="r"><input class="sim-input" type="number" step="0.01" min="0" data-i="'+i+'" value="'+v.preco.toFixed(2)+'"></td>'+
+      '<td class="r" style="color:var(--fly-text-muted)" id="v_tax_'+i+'">'+brl(-c.taxas)+'</td>'+
+      '<td class="r" style="color:var(--fly-text-muted)" id="v_imp_'+i+'">'+brl(-c.imp)+'</td>'+
+      '<td class="r" style="color:var(--fly-text-muted)">'+brl(-c.custo)+'</td>'+
+      '<td class="r" style="color:var(--fly-text-muted)">'+brl(-c.envio)+'</td>'+
+      '<td class="r" style="font-weight:600;color:var(--fly-brand-strong)" id="v_sob_'+i+'">'+brl(c.sobra)+'</td>'+
+      '<td class="r" style="color:var(--fly-success)" id="v_mar_'+i+'">'+pct(c.margem)+'</td>'+
+      '<td class="r" id="v_roi_'+i+'">'+(c.roi>0?c.roi.toFixed(2).replace(".",",")+"×":"—")+'</td></tr>';});
+  tb.innerHTML=h;
+  tb.querySelectorAll("input").forEach(function(inp){inp.addEventListener("input",function(){
+    var i=+inp.dataset.i,val=parseFloat(inp.value);variacoes[i].preco=isNaN(val)?0:val;var c=calcVar(variacoes[i]);
+    document.getElementById("v_tax_"+i).textContent=brl(-c.taxas);
+    document.getElementById("v_imp_"+i).textContent=brl(-c.imp);
+    document.getElementById("v_sob_"+i).textContent=brl(c.sobra);
+    document.getElementById("v_mar_"+i).textContent=pct(c.margem);
+    document.getElementById("v_roi_"+i).textContent=c.roi>0?c.roi.toFixed(2).replace(".",",")+"×":"—";
+  });});}
+renderVariacoes();
+
+/* ---------- Simulador: Comissão de creator ---------- */
+var CR={preco:83.86,frascosPorPedido:1.4324,comPlataforma:0.0596,sfp:0.0596,taxaItem:5.94,imposto:0.0693,custoFrasco:17.38,envio:5};
+var crState={comissao:0.06,faturamento:10000,fixo:300};
+var CR_PRESETS=[0,3,6,10,15,25,30];
+function renderCrChips(){var el=document.getElementById("crChips");el.innerHTML=CR_PRESETS.map(function(p){
+  return '<button class="sim-chip'+(Math.round(crState.comissao*100)===p?' active':'')+'" data-p="'+p+'">'+p+'%</button>';}).join("");
+  el.querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){crState.comissao=(+b.dataset.p)/100;document.getElementById("crCom").value=+b.dataset.p;renderCr();});});}
+function renderCr(){var p=CR.preco;
+  var taxasImp=p*CR.comPlataforma+p*CR.sfp+CR.taxaItem+p*CR.imposto;
+  var custoEnvio=CR.custoFrasco*CR.frascosPorPedido+CR.envio;
+  var elaLeva=p*crState.comissao;
+  var sobra=p-taxasImp-custoEnvio-elaLeva;
+  var margem=p>0?sobra/p:0;
+  var pedidos=p>0?crState.faturamento/p:0;
+  var elaMes=pedidos*elaLeva;
+  var elaTotal=elaMes+crState.fixo;
+  var voceMes=pedidos*sobra-crState.fixo;
+  document.getElementById("o_taxas").textContent=brl(-taxasImp);
+  document.getElementById("o_custo").textContent=brl(-custoEnvio);
+  document.getElementById("o_com").textContent=brl(-elaLeva);
+  document.getElementById("o_sobra").textContent=brl(sobra);
+  document.getElementById("o_margem").textContent=pct(margem);
+  document.getElementById("o_pedidos").textContent=Math.round(pedidos).toLocaleString("pt-BR");
+  document.getElementById("o_elames").textContent=brl(elaMes);
+  document.getElementById("o_fixo").textContent=brl(crState.fixo);
+  document.getElementById("o_elatotal").textContent=brl(elaTotal);
+  document.getElementById("o_voce").textContent=brl(voceMes);
+  renderCrChips();}
+document.getElementById("crCom").addEventListener("input",function(){var v=parseFloat(this.value);crState.comissao=(isNaN(v)?0:v)/100;renderCr();});
+document.getElementById("crFat").addEventListener("input",function(){var v=parseFloat(this.value);crState.faturamento=isNaN(v)?0:v;renderCr();});
+document.getElementById("crFixo").addEventListener("input",function(){var v=parseFloat(this.value);crState.fixo=isNaN(v)?0:v;renderCr();});
+renderCr();
+
+/* ---------- Chart ---------- */
+var serie=[{d:"17/08",rev:2028.50,mid:449.01},{d:"18/08",rev:866.36,mid:188.78},{d:"19/08",rev:1875.44,mid:418},
+  {d:"20/08",rev:1347.56,mid:268.33},{d:"21/08",rev:112.96,mid:0},{d:"22/08",rev:0,mid:0},{d:"23/08",rev:0,mid:0}];
+function drawChart(){var svg=document.getElementById("chart");if(!svg)return;var W=svg.clientWidth||700,H=svg.clientHeight||340,pl=56,pr=16,pt=14,pb=28;
+  var cs=getComputedStyle(document.documentElement);var cRev=cs.getPropertyValue("--fly-chart-revenue").trim(),cMid=cs.getPropertyValue("--fly-chart-investment").trim();
+  var cGrid=cs.getPropertyValue("--fly-chart-grid").trim(),cAxis=cs.getPropertyValue("--fly-chart-axis").trim();var max=2200,n=serie.length;
+  function x(i){return pl+(W-pl-pr)*(n===1?0:i/(n-1));}function y(v){return pt+(H-pt-pb)*(1-v/max);}
+  var s='';for(var g=0;g<=4;g++){var gv=max*g/4,gy=y(gv);s+='<line x1="'+pl+'" y1="'+gy+'" x2="'+(W-pr)+'" y2="'+gy+'" stroke="'+cGrid+'" stroke-dasharray="3 3"/>';
+    s+='<text x="'+(pl-8)+'" y="'+(gy+4)+'" text-anchor="end" font-size="11" fill="'+cAxis+'">'+(gv>=1000?"R$ "+(gv/1000)+"k":"R$ "+gv)+'</text>';}
   serie.forEach(function(p,i){s+='<text x="'+x(i)+'" y="'+(H-8)+'" text-anchor="middle" font-size="11" fill="'+cAxis+'">'+p.d+'</text>';});
-  function line(key,color){
-    var pts=serie.map(function(p,i){return x(i)+","+y(p[key]);}).join(" ");
+  function line(key,color){var pts=serie.map(function(p,i){return x(i)+","+y(p[key]);}).join(" ");
     var dots=serie.map(function(p,i){return '<circle cx="'+x(i)+'" cy="'+y(p[key])+'" r="3" fill="'+color+'"/>';}).join("");
-    return '<polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+dots;
-  }
-  s+=line("rev",cRev)+line("mid",cMid);
-  svg.innerHTML=s;
-}
-window.addEventListener("resize",drawChart);
-drawChart();
+    return '<polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+dots;}
+  s+=line("rev",cRev)+line("mid",cMid);svg.innerHTML=s;}
+window.addEventListener("resize",drawChart);drawChart();
 </script>
 </body>
 </html>
