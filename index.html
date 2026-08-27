@@ -74,7 +74,7 @@
   .panel-head .pd{margin-top:6px;font-size:13px;color:var(--fly-text-muted)}
   .panel-body{padding:16px}
   .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid transparent;border-radius:7px;padding:5px 9px;font-size:11px;font-weight:600}
-  .pill-orange{color:var(--fly-warning-strong)} .pill-red{color:var(--fly-danger-strong)} .pill-green{color:var(--fly-success-text)}
+  .pill-orange{color:var(--fly-warning-strong)}
   .badge-sim{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--fly-brand-line);background:var(--fly-brand-soft);color:var(--fly-brand-strong);border-radius:7px;padding:4px 9px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
   .dl{display:flex;flex-direction:column;gap:10px}
   .dl-row{border:1px solid var(--fly-border-subtle);background:var(--fly-row-bg);border-radius:8px;padding:11px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
@@ -109,12 +109,16 @@
   .chart{position:relative;width:100%;height:340px}
   .legend{display:flex;gap:16px;margin-bottom:10px;font-size:12px;color:var(--fly-text-muted)}
   .legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
-  /* inputs de simulacao */
-  .sim-input{width:110px;max-width:100%;border:1px solid var(--fly-brand-line);background:var(--fly-surface);color:var(--fly-text);border-radius:6px;padding:5px 8px;font:inherit;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+  .sim-input{border:1px solid var(--fly-brand-line);background:var(--fly-surface);color:var(--fly-text);border-radius:6px;padding:5px 8px;font:inherit;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
   .sim-input:focus{outline:2px solid var(--fly-brand-line);outline-offset:1px}
-  .sim-note{margin-top:12px;font-size:12px;color:var(--fly-text-muted);display:flex;align-items:center;gap:6px}
+  .sim-note{margin-top:12px;font-size:12px;color:var(--fly-text-muted)}
   .sim-note b{color:var(--fly-brand-strong)}
-  .sim-controls{display:grid;gap:14px;grid-template-columns:repeat(3,1fr);margin-bottom:8px}
+  .prem-grid{display:grid;gap:12px;grid-template-columns:repeat(8,1fr)}
+  .prem-field label{display:block;font-size:10px;text-transform:uppercase;font-weight:600;color:var(--fly-text-dim);margin-bottom:5px}
+  .prem-field .inp{display:flex;align-items:center;gap:4px;border:1px solid var(--fly-brand-line);background:var(--fly-surface);border-radius:8px;padding:7px 9px}
+  .prem-field .inp input{border:0;background:transparent;color:var(--fly-text);font:inherit;font-size:14px;font-weight:600;width:100%;font-variant-numeric:tabular-nums;outline:none}
+  .prem-field .inp .u{color:var(--fly-text-muted);font-size:12px}
+  .sim-controls{display:grid;gap:14px;grid-template-columns:repeat(3,1fr)}
   .sim-field label{display:block;font-size:11px;text-transform:uppercase;font-weight:600;color:var(--fly-text-dim);margin-bottom:5px}
   .sim-field .inp{display:flex;align-items:center;gap:6px;border:1px solid var(--fly-brand-line);background:var(--fly-surface);border-radius:8px;padding:8px 11px}
   .sim-field .inp input{border:0;background:transparent;color:var(--fly-text);font:inherit;font-size:16px;font-weight:600;width:100%;font-variant-numeric:tabular-nums;outline:none}
@@ -130,8 +134,8 @@
   .sim-line .vl.neg{color:var(--fly-danger-strong)}
   .sim-line.hl{border-top:1px solid var(--fly-divider);margin-top:6px;padding-top:11px}
   .sim-line.hl .lb{font-weight:700;color:var(--fly-text)} .sim-line.hl .vl{color:var(--fly-brand-strong);font-size:15px}
-  @media(max-width:1000px){.stat-grid{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}.resumo{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:760px){.sidebar{display:none}.stat-grid{grid-template-columns:repeat(2,1fr)}h1{font-size:20px}.body,header.top{padding-left:16px;padding-right:16px}.banner{margin-left:16px;margin-right:16px}.sim-controls{grid-template-columns:1fr}.sim-out{grid-template-columns:1fr}}
+  @media(max-width:1000px){.stat-grid{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}.resumo{grid-template-columns:repeat(2,1fr)}.prem-grid{grid-template-columns:repeat(4,1fr)}}
+  @media(max-width:760px){.sidebar{display:none}.stat-grid{grid-template-columns:repeat(2,1fr)}h1{font-size:20px}.body,header.top{padding-left:16px;padding-right:16px}.banner{margin-left:16px;margin-right:16px}.sim-controls{grid-template-columns:1fr}.sim-out{grid-template-columns:1fr}.prem-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -166,18 +170,15 @@
       </div>
       <div class="head-actions">
         <div class="chips">
-          <button class="chip">7D</button>
-          <button class="chip">15D</button>
-          <button class="chip active">30D</button>
-          <button class="chip">Tudo</button>
+          <button class="chip">7D</button><button class="chip">15D</button><button class="chip active">30D</button><button class="chip">Tudo</button>
         </div>
-        <button class="theme-btn" onclick="toggleTheme()" aria-label="Alternar tema" id="themeBtn">
-          <svg viewBox="0 0 24 24" id="themeIcon"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <button class="theme-btn" onclick="toggleTheme()" aria-label="Alternar tema">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         </button>
       </div>
     </header>
 
-    <div class="banner">Preview visual (dados mockados e anonimizados). As tabelas <b>Preço por variação</b> e <b>Simulador de comissão</b> são interativas — edite os campos destacados. O filtro de período é ilustrativo.</div>
+    <div class="banner">Preview visual (dados mockados e anonimizados). As <b>Premissas fiscais</b>, o <b>Preço por variação</b> e o <b>Simulador de comissão</b> são interativos — edite os campos destacados.</div>
 
     <div class="body">
       <div class="stat-grid">
@@ -227,18 +228,6 @@
         </div>
       </div>
 
-      <!-- Variações (SIMULADOR) -->
-      <div class="panel">
-        <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Preço e margem por variação</h2><p class="pd">Simule: edite o preço e veja margem, sobra e ROI recalcularem</p></div></div><span class="badge-sim">Simulador</span></div>
-        <div class="panel-body">
-          <div class="tbl-wrap"><table>
-            <thead><tr><th>Variação</th><th class="r">Preço</th><th class="r">Taxas TikTok</th><th class="r">Impostos</th><th class="r">Custo</th><th class="r">Envio</th><th class="r">Sobra/pedido</th><th class="r">Margem</th><th class="r">ROI mín.</th></tr></thead>
-            <tbody id="variacoes"></tbody>
-          </table></div>
-          <p class="sim-note">Premissas: taxa TikTok <b>17,2% + R$ 5,94</b>/pedido · imposto <b>6,93%</b> · custo do frasco <b>R$ 17,38</b> · envio <b>R$ 5,00</b>. Edite o <b>preço</b> de cada linha.</p>
-        </div>
-      </div>
-
       <div class="panel">
         <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Ranking de creators</h2><p class="pd">6 creators com venda no período</p></div></div></div>
         <div class="panel-body"><div class="tbl-wrap"><table>
@@ -254,7 +243,46 @@
         </table></div></div>
       </div>
 
-      <!-- Simulador de comissão de creator -->
+      <div class="panel">
+        <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Estoque por lote (FIFO)</h2><p class="pd">Consumo em ordem de chegada e alertas de cobertura</p></div></div><span class="pill pill-orange">Cobertura baixa</span></div>
+        <div class="panel-body">
+          <div class="resumo">
+            <div class="ri"><div class="k">Em estoque</div><div class="v">235 frascos</div></div>
+            <div class="ri"><div class="k">Cobertura</div><div class="v">14,6 dias</div></div>
+            <div class="ri"><div class="k">Próxima chegada</div><div class="v">25/08/2026 · 1.000</div></div>
+            <div class="ri"><div class="k">Ruptura em</div><div class="v">07/09/2026</div></div>
+          </div>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Lote</th><th class="r">Unidades</th><th class="r">Custo/un</th><th class="r">Chega em</th><th class="r">Consumido</th><th class="r">Disponível</th></tr></thead>
+            <tbody>
+              <tr><td class="name">L1</td><td class="r">500</td><td class="r">R$ 18,15</td><td class="r" style="color:var(--fly-text-muted)">01/08/2026</td><td class="r">265</td><td class="r" style="font-weight:600;color:var(--fly-success)">235</td></tr>
+              <tr><td class="name">L2</td><td class="r">1.000</td><td class="r">R$ 17,24</td><td class="r" style="color:var(--fly-text-muted)">25/08/2026</td><td class="r">0</td><td class="r" style="font-weight:600;color:var(--fly-success)">0</td></tr>
+              <tr><td class="name">L3</td><td class="r">5.000</td><td class="r">R$ 17,38</td><td class="r" style="color:var(--fly-text-muted)">07/09/2026</td><td class="r">0</td><td class="r" style="font-weight:600;color:var(--fly-success)">0</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <!-- ===== SIMULAÇÕES ===== -->
+      <div class="panel">
+        <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Premissas fiscais</h2><p class="pd">Ajuste as alíquotas e o envio — os simuladores abaixo recalculam</p></div></div><span class="badge-sim">Editável</span></div>
+        <div class="panel-body">
+          <div class="prem-grid" id="premGrid"></div>
+          <p class="sim-note">Imposto total aplicado: <b id="impTotal">6,93%</b> · Envio: <b id="envTxt">R$ 5,00</b>/pedido.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Preço e margem por variação</h2><p class="pd">Simule: edite preço e frascos e veja margem, sobra e ROI recalcularem</p></div></div><span class="badge-sim">Simulador</span></div>
+        <div class="panel-body">
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Variação</th><th class="r">Preço</th><th class="r">Frascos</th><th class="r">Taxas TikTok</th><th class="r">Impostos</th><th class="r">Custo</th><th class="r">Envio</th><th class="r">Sobra/pedido</th><th class="r">Margem</th><th class="r">ROI mín.</th></tr></thead>
+            <tbody id="variacoes"></tbody>
+          </table></div>
+          <p class="sim-note">Premissas: taxa TikTok <b>17,2% + R$ 5,94</b>/pedido · custo do frasco <b>R$ 17,38</b>. Imposto e envio vêm das <b>premissas fiscais</b> acima. Edite <b>preço</b> e <b>frascos</b>.</p>
+        </div>
+      </div>
+
       <div class="panel">
         <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Simulador de comissão de creator</h2><p class="pd">Defina a comissão e veja quanto sobra pra você e quanto a creator leva</p></div></div><span class="badge-sim">Simulador</span></div>
         <div class="panel-body">
@@ -280,30 +308,10 @@
               <div class="sim-line"><span class="lb">A creator leva (comissão)</span><span class="vl" id="o_elames">—</span></div>
               <div class="sim-line"><span class="lb">(+) Fixo mensal</span><span class="vl" id="o_fixo">—</span></div>
               <div class="sim-line"><span class="lb">A creator leva no total</span><span class="vl" id="o_elatotal">—</span></div>
-              <div class="sim-line hl"><span class="lb">= Você fica no mês</span><span class="vl" id="o_voce">—</span></div>
+              <div class="sim-line"><span class="lb">Você fica no mês (antes do fixo)</span><span class="vl" id="o_voceantes">—</span></div>
+              <div class="sim-line hl"><span class="lb">= Você fica no mês (já sem o fixo)</span><span class="vl" id="o_voce">—</span></div>
             </div>
           </div>
-          <p class="sim-note">Premissas por pedido: comissão da plataforma <b>5,96%</b> · SFP <b>5,96%</b> · taxa por item <b>R$ 5,94</b> · imposto <b>6,93%</b> · custo <b>R$ 17,38</b>×<b>1,43</b> frascos · envio <b>R$ 5,00</b>.</p>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-head"><div class="ph-left"><span class="ph-bar"></span><div><h2>Estoque por lote (FIFO)</h2><p class="pd">Consumo em ordem de chegada e alertas de cobertura</p></div></div><span class="pill pill-orange">Cobertura baixa</span></div>
-        <div class="panel-body">
-          <div class="resumo">
-            <div class="ri"><div class="k">Em estoque</div><div class="v">235 frascos</div></div>
-            <div class="ri"><div class="k">Cobertura</div><div class="v">14,6 dias</div></div>
-            <div class="ri"><div class="k">Próxima chegada</div><div class="v">25/08/2026 · 1.000</div></div>
-            <div class="ri"><div class="k">Ruptura em</div><div class="v">07/09/2026</div></div>
-          </div>
-          <div class="tbl-wrap"><table>
-            <thead><tr><th>Lote</th><th class="r">Unidades</th><th class="r">Custo/un</th><th class="r">Chega em</th><th class="r">Consumido</th><th class="r">Disponível</th></tr></thead>
-            <tbody>
-              <tr><td class="name">L1</td><td class="r">500</td><td class="r">R$ 18,15</td><td class="r" style="color:var(--fly-text-muted)">01/08/2026</td><td class="r">265</td><td class="r" style="font-weight:600;color:var(--fly-success)">235</td></tr>
-              <tr><td class="name">L2</td><td class="r">1.000</td><td class="r">R$ 17,24</td><td class="r" style="color:var(--fly-text-muted)">25/08/2026</td><td class="r">0</td><td class="r" style="font-weight:600;color:var(--fly-success)">0</td></tr>
-              <tr><td class="name">L3</td><td class="r">5.000</td><td class="r">R$ 17,38</td><td class="r" style="color:var(--fly-text-muted)">07/09/2026</td><td class="r">0</td><td class="r" style="font-weight:600;color:var(--fly-success)">0</td></tr>
-            </tbody>
-          </table></div>
         </div>
       </div>
 
@@ -313,10 +321,28 @@
 
 <script>
 function brl(v){return (v<0?"-":"")+"R$ "+Math.abs(v).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});}
-function pct(v){return (v*100).toLocaleString("pt-BR",{maximumFractionDigits:1})+"%";}
+function pct(v,d){return (v*100).toLocaleString("pt-BR",{maximumFractionDigits:d==null?1:d})+"%";}
 function toggleTheme(){var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';drawChart();}
 
-/* ---------- DRE ---------- */
+/* Premissas fiscais (editáveis) */
+var fiscal={impostos:{icms:0,cbs:0.009,ibs:0.001,pis:0.0065,cofins:0.03,irpj:0.012,csll:0.0108},envio:5};
+var IMP_LABELS=[["icms","ICMS"],["cbs","CBS"],["ibs","IBS"],["pis","PIS"],["cofins","COFINS"],["irpj","IRPJ"],["csll","CSLL"]];
+function impostoTotal(){return Object.keys(fiscal.impostos).reduce(function(s,k){return s+fiscal.impostos[k];},0);}
+function renderPremissas(){
+  var g=document.getElementById("premGrid");
+  var h=IMP_LABELS.map(function(it){var k=it[0];
+    return '<div class="prem-field"><label>'+it[1]+'</label><div class="inp"><input type="number" step="0.1" min="0" data-imp="'+k+'" value="'+(fiscal.impostos[k]*100).toFixed(2).replace(/\.?0+$/,"")+'"><span class="u">%</span></div></div>';
+  }).join("");
+  h+='<div class="prem-field"><label>Envio/pedido</label><div class="inp"><span class="u">R$</span><input type="number" step="0.5" min="0" id="envInp" value="'+fiscal.envio+'"></div></div>';
+  g.innerHTML=h;
+  g.querySelectorAll("input[data-imp]").forEach(function(inp){inp.addEventListener("input",function(){
+    fiscal.impostos[inp.dataset.imp]=(parseFloat(inp.value)||0)/100; syncPremissas(); renderVariacoes(); renderCr();});});
+  document.getElementById("envInp").addEventListener("input",function(){fiscal.envio=parseFloat(this.value)||0; syncPremissas(); renderVariacoes(); renderCr();});
+  syncPremissas();
+}
+function syncPremissas(){document.getElementById("impTotal").textContent=pct(impostoTotal(),2);document.getElementById("envTxt").textContent=brl(fiscal.envio);}
+
+/* DRE */
 var DRE_BASE=33792;
 var dre=[["Preço de tabela",33792,"base"],["(−) Desconto concedido",-18278.81,"deducao"],["(−) Reembolsos",0,"deducao"],
   ["= Receita bruta",15513.19,"total"],["(−) Comissão da plataforma",-924.31,"deducao"],["(−) Taxa de serviço do SFP",-924.31,"deducao"],
@@ -331,50 +357,52 @@ var dre=[["Preço de tabela",33792,"base"],["(−) Desconto concedido",-18278.81
     (prop>0?'<div class="meter"><span style="width:'+Math.max(prop*100,2)+'%;background:'+barColor+'"></span></div>':'')+'</div>';});
   document.getElementById("dre").innerHTML=html;})();
 
-/* ---------- Simulador: Preço por variação ---------- */
-var VAR={taxaVar:0.172,taxaFixa:5.94,imposto:0.0693,custoFrasco:17.38,envio:5};
+/* Simulador variação (preço + frascos editáveis) */
+var VAR={taxaVar:0.172,taxaFixa:5.94,custoFrasco:17.38};
 var variacoes=[{nome:"1 Frasco",frascos:1,preco:75.00},{nome:"2 Frascos",frascos:2,preco:99.66},{nome:"4 Frascos",frascos:4,preco:178.96}];
-function calcVar(v){var taxas=v.preco*VAR.taxaVar+VAR.taxaFixa,imp=v.preco*VAR.imposto,custo=VAR.custoFrasco*v.frascos,envio=VAR.envio;
+function calcVar(v){var taxas=v.preco*VAR.taxaVar+VAR.taxaFixa,imp=v.preco*impostoTotal(),custo=VAR.custoFrasco*v.frascos,envio=fiscal.envio;
   var sobra=v.preco-taxas-imp-custo-envio;return{taxas:taxas,imp:imp,custo:custo,envio:envio,sobra:sobra,margem:v.preco>0?sobra/v.preco:0,roi:sobra>0?v.preco/sobra:0};}
 function renderVariacoes(){var tb=document.getElementById("variacoes");var h="";
   variacoes.forEach(function(v,i){var c=calcVar(v);
     h+='<tr><td class="name">'+v.nome+'</td>'+
-      '<td class="r"><input class="sim-input" type="number" step="0.01" min="0" data-i="'+i+'" value="'+v.preco.toFixed(2)+'"></td>'+
+      '<td class="r"><input class="sim-input" style="width:100px" type="number" step="0.01" min="0" data-i="'+i+'" data-f="preco" value="'+v.preco.toFixed(2)+'"></td>'+
+      '<td class="r"><input class="sim-input" style="width:70px" type="number" step="1" min="1" data-i="'+i+'" data-f="frascos" value="'+v.frascos+'"></td>'+
       '<td class="r" style="color:var(--fly-text-muted)" id="v_tax_'+i+'">'+brl(-c.taxas)+'</td>'+
       '<td class="r" style="color:var(--fly-text-muted)" id="v_imp_'+i+'">'+brl(-c.imp)+'</td>'+
-      '<td class="r" style="color:var(--fly-text-muted)">'+brl(-c.custo)+'</td>'+
-      '<td class="r" style="color:var(--fly-text-muted)">'+brl(-c.envio)+'</td>'+
+      '<td class="r" style="color:var(--fly-text-muted)" id="v_cus_'+i+'">'+brl(-c.custo)+'</td>'+
+      '<td class="r" style="color:var(--fly-text-muted)" id="v_env_'+i+'">'+brl(-c.envio)+'</td>'+
       '<td class="r" style="font-weight:600;color:var(--fly-brand-strong)" id="v_sob_'+i+'">'+brl(c.sobra)+'</td>'+
-      '<td class="r" style="color:var(--fly-success)" id="v_mar_'+i+'">'+pct(c.margem)+'</td>'+
+      '<td class="r" style="color:var(--fly-success)" id="v_mar_'+i+'">'+pct(c.margem,0)+'</td>'+
       '<td class="r" id="v_roi_'+i+'">'+(c.roi>0?c.roi.toFixed(2).replace(".",",")+"×":"—")+'</td></tr>';});
   tb.innerHTML=h;
   tb.querySelectorAll("input").forEach(function(inp){inp.addEventListener("input",function(){
-    var i=+inp.dataset.i,val=parseFloat(inp.value);variacoes[i].preco=isNaN(val)?0:val;var c=calcVar(variacoes[i]);
-    document.getElementById("v_tax_"+i).textContent=brl(-c.taxas);
-    document.getElementById("v_imp_"+i).textContent=brl(-c.imp);
-    document.getElementById("v_sob_"+i).textContent=brl(c.sobra);
-    document.getElementById("v_mar_"+i).textContent=pct(c.margem);
-    document.getElementById("v_roi_"+i).textContent=c.roi>0?c.roi.toFixed(2).replace(".",",")+"×":"—";
-  });});}
-renderVariacoes();
+    var i=+inp.dataset.i,f=inp.dataset.f,val=parseFloat(inp.value);variacoes[i][f]=isNaN(val)?0:val;updateVarRow(i);});});
+}
+function updateVarRow(i){var c=calcVar(variacoes[i]);
+  document.getElementById("v_tax_"+i).textContent=brl(-c.taxas);
+  document.getElementById("v_imp_"+i).textContent=brl(-c.imp);
+  document.getElementById("v_cus_"+i).textContent=brl(-c.custo);
+  document.getElementById("v_env_"+i).textContent=brl(-c.envio);
+  document.getElementById("v_sob_"+i).textContent=brl(c.sobra);
+  document.getElementById("v_mar_"+i).textContent=pct(c.margem,0);
+  document.getElementById("v_roi_"+i).textContent=c.roi>0?c.roi.toFixed(2).replace(".",",")+"×":"—";}
 
-/* ---------- Simulador: Comissão de creator ---------- */
-var CR={preco:83.86,frascosPorPedido:1.4324,comPlataforma:0.0596,sfp:0.0596,taxaItem:5.94,imposto:0.0693,custoFrasco:17.38,envio:5};
+/* Simulador creator */
+var CR={preco:83.86,frascosPorPedido:1.4324,comPlataforma:0.0596,sfp:0.0596,taxaItem:5.94,custoFrasco:17.38};
 var crState={comissao:0.06,faturamento:10000,fixo:300};
 var CR_PRESETS=[0,3,6,10,15,25,30];
 function renderCrChips(){var el=document.getElementById("crChips");el.innerHTML=CR_PRESETS.map(function(p){
   return '<button class="sim-chip'+(Math.round(crState.comissao*100)===p?' active':'')+'" data-p="'+p+'">'+p+'%</button>';}).join("");
   el.querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){crState.comissao=(+b.dataset.p)/100;document.getElementById("crCom").value=+b.dataset.p;renderCr();});});}
 function renderCr(){var p=CR.preco;
-  var taxasImp=p*CR.comPlataforma+p*CR.sfp+CR.taxaItem+p*CR.imposto;
-  var custoEnvio=CR.custoFrasco*CR.frascosPorPedido+CR.envio;
+  var taxasImp=p*CR.comPlataforma+p*CR.sfp+CR.taxaItem+p*impostoTotal();
+  var custoEnvio=CR.custoFrasco*CR.frascosPorPedido+fiscal.envio;
   var elaLeva=p*crState.comissao;
   var sobra=p-taxasImp-custoEnvio-elaLeva;
   var margem=p>0?sobra/p:0;
   var pedidos=p>0?crState.faturamento/p:0;
   var elaMes=pedidos*elaLeva;
-  var elaTotal=elaMes+crState.fixo;
-  var voceMes=pedidos*sobra-crState.fixo;
+  var voceAntes=pedidos*sobra;
   document.getElementById("o_taxas").textContent=brl(-taxasImp);
   document.getElementById("o_custo").textContent=brl(-custoEnvio);
   document.getElementById("o_com").textContent=brl(-elaLeva);
@@ -383,15 +411,15 @@ function renderCr(){var p=CR.preco;
   document.getElementById("o_pedidos").textContent=Math.round(pedidos).toLocaleString("pt-BR");
   document.getElementById("o_elames").textContent=brl(elaMes);
   document.getElementById("o_fixo").textContent=brl(crState.fixo);
-  document.getElementById("o_elatotal").textContent=brl(elaTotal);
-  document.getElementById("o_voce").textContent=brl(voceMes);
+  document.getElementById("o_elatotal").textContent=brl(elaMes+crState.fixo);
+  document.getElementById("o_voceantes").textContent=brl(voceAntes);
+  document.getElementById("o_voce").textContent=brl(voceAntes-crState.fixo);
   renderCrChips();}
 document.getElementById("crCom").addEventListener("input",function(){var v=parseFloat(this.value);crState.comissao=(isNaN(v)?0:v)/100;renderCr();});
 document.getElementById("crFat").addEventListener("input",function(){var v=parseFloat(this.value);crState.faturamento=isNaN(v)?0:v;renderCr();});
 document.getElementById("crFixo").addEventListener("input",function(){var v=parseFloat(this.value);crState.fixo=isNaN(v)?0:v;renderCr();});
-renderCr();
 
-/* ---------- Chart ---------- */
+/* Chart */
 var serie=[{d:"17/08",rev:2028.50,mid:449.01},{d:"18/08",rev:866.36,mid:188.78},{d:"19/08",rev:1875.44,mid:418},
   {d:"20/08",rev:1347.56,mid:268.33},{d:"21/08",rev:112.96,mid:0},{d:"22/08",rev:0,mid:0},{d:"23/08",rev:0,mid:0}];
 function drawChart(){var svg=document.getElementById("chart");if(!svg)return;var W=svg.clientWidth||700,H=svg.clientHeight||340,pl=56,pr=16,pt=14,pb=28;
@@ -405,7 +433,13 @@ function drawChart(){var svg=document.getElementById("chart");if(!svg)return;var
     var dots=serie.map(function(p,i){return '<circle cx="'+x(i)+'" cy="'+y(p[key])+'" r="3" fill="'+color+'"/>';}).join("");
     return '<polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+dots;}
   s+=line("rev",cRev)+line("mid",cMid);svg.innerHTML=s;}
-window.addEventListener("resize",drawChart);drawChart();
+window.addEventListener("resize",drawChart);
+
+/* init */
+renderPremissas();
+renderVariacoes();
+renderCr();
+drawChart();
 </script>
 </body>
 </html>
